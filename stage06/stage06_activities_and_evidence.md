@@ -2,9 +2,9 @@
 
 Complete this one group record. Link actual issues, diffs, tests and reviews; avoid copying entire histories. Blank fields are intentional. Duplicate rows as needed. Use synthetic data only. Every member records their own meaningful contribution. Do not invent results, reviews or Copilot use.
 
-- Group/tutorial: [response]
-- Members, GitHub usernames and cohorts: [response]
-- Repository URL: [response]
+- Group/tutorial: Wed 4:30 - 6:30 Group 3
+- Members, GitHub usernames and cohorts: Andy Hoang, Denis Zimba, Tari Ganas, Ahron Singh typicalgeezer42
+- Repository URL: [[response]](https://github.com/deniszimba/st1-assignment-3)
 - Starting SHA: [response]
 
 ## A Requirement to issue activities
