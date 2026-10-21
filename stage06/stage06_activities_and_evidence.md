@@ -11,11 +11,26 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 
 ### FR-02 Patient Search
 
-- Title: [response]
-- Context: [response]
+- Title:
+  Patient search by ID (FR-02)
+  
+- Context: PatientService.find_patient 
 - Requirement: [response]
-- Acceptance criteria: [response]
-- Scope: [response]
+
+- Acceptance criteria:
+
+acceptance criteria:
+
+With P1 registered, find_patient('P1') returns the same stored Patient object (checked with is), not a copy
+find_patient('P1    ') returns that same patient
+find_patient('p1') raises LookupError since its case sensitive
+An unregistered valid ID such as P2 raises LookupError
+A blank or non-text ID raises ValueError
+Lookup never adds, replaces or changes a patient record
+
+- Scope:
+  'find_patient' works and the tests pass no changes to any other .py files
+  
 - Definition of Done: [response]
 - Owner: [response]
 - Actual issue link: [response]
