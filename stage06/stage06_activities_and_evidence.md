@@ -5,7 +5,7 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 - Group/tutorial: Wed 4:30 - 6:30 Group 3
 - Members, GitHub usernames and cohorts: Andy Hoang, Denis Zimba, Tari Ganas, Ahron Singh typicalgeezer42
 - Repository URL: [[response]](https://github.com/deniszimba/st1-assignment-3)
-- Starting SHA: [response]
+- Starting SHA: 90d0d7f5c52379ab957e37cdd988c6a36017b675 (“Add shared SmartCare Assignment 3 starter”, Denis Zimba, 14 Oct 2026)
 
 ## A Requirement to issue activities
 
@@ -15,11 +15,9 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
   Patient search by ID (FR-02)
   
 - Context: PatientService.find_patient 
-- Requirement: [response]
+- Requirement: Find a patient by patient ID
 
 - Acceptance criteria:
-
-acceptance criteria:
 
 With P1 registered, find_patient('P1') returns the same stored Patient object (checked with is), not a copy
 find_patient('P1    ') returns that same patient
@@ -31,45 +29,77 @@ Lookup never adds, replaces or changes a patient record
 - Scope:
   'find_patient' works and the tests pass no changes to any other .py files
   
-- Definition of Done: [response]
-- Owner: [response]
-- Actual issue link: [response]
+- Definition of Done: the find_patient works and every acceptance criteria is met. 
+- Owner: Ahron 
+- Actual issue link: https://github.com/deniszimba/st1-assignment-3/issues/1
 
+### Supporting FR-03 Practitioner Search
+
+- Title:
+  Practitioner lookup by ID
+  
+- Context: PractitionerService.find_practitioner raises NotImplementedError. It is a supporting lookup over practitioners registered under FR-03
+- Requirement: Find a Practitioner by Practitioner ID
+
+- Acceptance criteria:
+
+Returns the same stored object, not a copy
+Trimmed IDs work
+Wrong case raises LookupError
+Unknown ID raises LookupError
+Blank or non-text ID raises ValueError
+Lookup never adds or changes a record
+
+- Scope:
+PractitionerService.find_practitioner in services.py and tests in test_services.py only
+  
+- Definition of Done: the PractitionerService.find_practitioner works and every acceptance criteria is met.
+- Owner: Ahron
+- Actual issue link: https://github.com/deniszimba/st1-assignment-3/issues/2
+  
 ### FR-06 Appointment Cancellation with FR-07 retained history
 
-- Title: [response]
-- Context: [response]
-- Requirement: [response]
-- Acceptance criteria: [response]
-- Scope: [response]
-- Definition of Done: [response]
-- Owner: [response]
-- Actual issue link: [response]
+- Title: Cancel a scheduled appointment and keep it in history (FR-06, FR-07)
+- Context: AppointmentService.cancel_appointment raises NotImplementedError. Appointment.cancel() already only allows SCHEDULED to CANCELLED and raises ValueError otherwise.
+- Requirement: FR-06 Cancel only a SCHEDULED appointment. FR-07 Keep the same appointment, CANCELLED, in session history.
+- Acceptance criteria:
+
+Cancelling SCHEDULED A1 returns the same Appointment object with status CANCELLED
+After cancelling, find_appointment('A1') returns that same object, the store still lists it, and the other details dont change
+A second cancellation raises ValueError and the status stays CANCELLED
+Cancelling a COMPLETED appointment raises ValueError and it stays COMPLETED
+An unknown valid ID raises LookupError; a blank or non-text ID raises ValueError
+Cancelling one appointment does not change any other appointment
+Uses Appointment.cancel(); no direct status assignment, deletion or replacement object
+- Scope: cancel_appointment in services.py and tests in test_services.py only
+- Definition of Done: Every acceptance criterion has a passing test in tests/test_services.py and everything works and is completed.
+- Owner: Ahron
+- Actual issue link: https://github.com/deniszimba/st1-assignment-3/issues/3
 
 ## B Commit quality
 
 | Original example | Strong or Weak | Reason |
 |---|---|---|
-| changes | [select] | [response] |
-| final version | [select] | [response] |
-| Add patient search by ID | [select] | [response] |
-| fix stuff | [select] | [response] |
-| Prevent cancellation of completed appointments | [select] | [response] |
+| changes | weak | It does not say what changed or why. A reviewer cannot link it to a requirement without opening the whole diff. |
+| final version | Weak | 	It describes timing, not behaviour |
+| Add patient search by ID | Strong | Short, imperative and names one behaviour that maps to FR-02 |
+| fix stuff | Strong | Everything was fixed |
+| Prevent cancellation of completed appointments | Strong | 	It names the exact rule (FR-06, only SCHEDULED can be cancelled) and the behaviour change |
 
 ## C Over scoped PR review
 
 A cancellation PR also renames unrelated patient fields, restructures unrelated code and adds a new dependency.
 
-- Scope concerns: [response]
-- Responsibility and architecture concerns: [response]
-- Testing and review concerns: [response]
-- Changes to remove or separate, with reasons: [response]
+- Scope concerns: The PR should deliver one thing, FR-06/FR-07 cancellation. The field renames, restructuring and new dependency are three extra changes with no linked issue or acceptance criteria.
+- Responsibility and architecture concerns: By renaming the patient fields changes the domains public interface. So renaming runs the risk of breaking the lookup and booking.
+- Testing and review concerns: A green run only proves the checks that exist. The supplied eight tests do not call the service cancellation at all, and they may not cover renamed fields.
+- Changes to remove or separate, with reasons: Keep only cancel_appointment and its tests. Remove the field renames because no requirement asks for them if the team wants them, raise a separate issue and discuss it first.
 
 ## D Challenge a weak Copilot review
 
 GitHub Copilot says: "Looks good; tests pass."
 
-- Missing evidence: [response]
+- Missing evidence: No test commands are provided, no SHA, and copilot cant actually see our test run, so its essentially another unverified ai claim. it names no requirement or acceptance, with no details 
 - Follow-up review question 1: [response]
 - Follow-up review question 2: [response]
 - Follow-up review question 3: [response]
