@@ -136,121 +136,174 @@ Create at least two focused issues. Add a linked practitioner-lookup issue or an
 
 ## G Pull request evidence
 
-Repeat this block per PR. Record actual events, not planned approvals.
+  PR #4: Patient search by ID
 
-- PR link and title: [response]
-- Linked issue and requirement: [response]
-- Feature branch: [response]
-- Changed behaviour: [response]
-- Meaningful commits: [links]
-- Test command, directory and observed result: [response]
-- Another-member reviewer: [response]
-- Human observations recorded before Copilot: [link and time]
-- Requirement, responsibilities, test assertions and unrelated-scope checks: [response]
-- Key feedback: [response]
-- Author response/change and verification: [response]
-- Reviewer recheck and approval: [link]
-- Merge outcome and SHA: [response]
-- Significant Copilot assistance: [summary or none]
-- Linked issue closure: [response]
-- Each member updated main: [member and confirmation]
+- PR link and title: [#4](https://github.com/deniszimba/st1-assignment-3/pull/4) patient search by ID
+- Linked issue and requirement: [#1](https://github.com/deniszimba/st1-assignment-3/issues/1) FR-02 AC-02.1 AC-02.2
+- Feature branch: 'feature/patient-lookup'
+- Changed behaviour: patient lookup was added and seven patient search test cases. 
+- Meaningful commits:
+  - https://github.com/deniszimba/st1-assignment-3/commit/d72d6c6377d43d65959bb4d0ef16778baaea6577
+  - https://github.com/deniszimba/st1-assignment-3/commit/30367d277b75ac26d5f30f8948d2fe9b64b5ce84 
+- Test command, directory and observed result: -m pytest from project/ — 15 passed on 30367d2
+- Another-member reviewer: Ahron Singh, Tari Ganas
+- Human observations recorded before Copilot: Tari's review comment: (https://github.com/deniszimba/st1-assignment-3/pull/4#issuecomment-6306698027), posted 21 Oct 2026. The Copilot output was posted later on the same day (https://github.com/deniszimba/st1-assignment-3/pull/4#issuecomment-6307187070)  
+- Requirement, responsibilities, test assertions and unrelated-scope checks: I confirm that only services.py changed and test_services.py was added by Tari he checked that the acceptance criteria was right judged that the code follows the requirement and ran the tests: 15 passed
+- Key feedback: No changes were necessary copilot was useful however it should not be trusted blindly  
+- Author response/change and verification: No code change was needed
+- Reviewer recheck and approval: (https://github.com/deniszimba/st1-assignment-3/pull/4#pullrequestreview-5594757864) 21 Oct 2026
+- Merge outcome and SHA: merged into main by Tari Ganas, 21 Oct 2026, merge commit [433a34524be0a4d30dae84246b43828b08ba2c5d](https://github.com/deniszimba/st1-assignment-3/commit/433a34524be0a4d30dae84246b43828b08ba2c5d) 
+- Significant Copilot assistance: Tari used Copilot Chat for the required review comparison 
+- Linked issue closure: in the PR description issue #1 closed when PR #4 merged
+- Each member updated main: Every member updated to main, Tari Ganas, Denis Zimba, Tari Ganas, Ahron Singh 
 - Integrated verification after merge: [command, directory, result and code SHA]
+
+PR #5: Cancel a scheduled appointment and keep it in history
+
+- PR link and title: [#5](https://github.com/deniszimba/st1-assignment-3/pull/5) Practitioner lookup by ID
+- Linked issue and requirement: [#2](https://github.com/deniszimba/st1-assignment-3/issues/2), supporting operation over FR-03 registrations
+- Feature branch: feature/practitioner-lookup
+- Changed behaviour: Added practitioner lookup and seven practitioner search test cases
+- Meaningful commits:
+   https://github.com/deniszimba/st1-assignment-3/commit/6471d23390b54ee77c240f175a338d4c12737472
+- Test command, directory and observed result: python -m pytest` from project/ — 22 passed on 6471d23.
+- Another-member reviewer: Tari Ganas, Ahron Singh
+- Human observations recorded before Copilot: This is Tari's Human review before Copilot (https://github.com/deniszimba/st1-assignment-3/pull/5#issuecomment-6309391741) which followed onto copilots output (https://github.com/deniszimba/st1-assignment-3/pull/5#issuecomment-6309576994) and finally Taris decision
+(https://github.com/deniszimba/st1-assignment-3/pull/5#issuecomment-6309712942)
+- Requirement, responsibilities, test assertions and unrelated-scope checks: The change adds the supporting practitioner lookup. PractitionerService.find_practitioner uses the data store’s existing validation and raises LookupError for an unknown practitioner. The tests check the same stored object, spaces around IDs, case sensitivity, unknown IDs, invalid IDs and unchanged records. Only services.py and test_services.py were changed.
+- Key feedback: Whilst copilot is useful it shouldn't always be trusted and should always be looked over 
+- Author response/change and verification: No code was changed 
+- Reviewer recheck and approval: (https://github.com/deniszimba/st1-assignment-3/pull/5#issuecomment-6309721002) 21 Oct 2026
+- Merge outcome and SHA: Merged into main: merge SHA f36218eb37b264b2f6b435a7933589ab07176390 (https://github.com/deniszimba/st1-assignment-3/commit/433a34524be0a4d30dae84246b43828b08ba2c5d) 
+- Significant Copilot assistance: Tari used Copilot Chat for the required review comparison
+- Linked issue closure: in the PR description issue #2 closed when PR #5 merged
+- Each member updated main: Every member updated to main, Tari Ganas, Denis Zimba, Tari Ganas, Ahron Singh
+- Integrated verification after merge: [command, directory, result and code SHA]
+
+  PR #6: Cancel a scheduled appointment and keep it in history
+
+- PR link and title: [6](https://github.com/deniszimba/st1-assignment-3/pull/6) Cancel appointments and keep their history
+- Linked issue and requirement: [#3](https://github.com/deniszimba/st1-assignment-3/issues/3) FR-06 and FR-07 AC-05.1 to AC-05.3
+- Feature branch: feature/cancel-appointment
+- Changed behaviour: Added appointment cancellation and eleven cancellation test cases
+- Meaningful commits:
+  https://github.com/deniszimba/st1-assignment-3/commit/4de75529e0ab807b1e1c1d8fa7985aa66c5f12ed
+- Test command, directory and observed result: python -m pytest from project/ — 33 passed on 4de7552
+- Another-member reviewer: Tari Ganas, Ahron Singh
+- Human observations recorded before Copilot: Tari's Human review before Copilot: (https://github.com/deniszimba/st1-assignment-3/pull/6#issuecomment-6315364299)
+  here is Copilots output: (https://github.com/deniszimba/st1-assignment-3/pull/6#issuecomment-6315409481)
+  and here is Taris final  decisions: (https://github.com/deniszimba/st1-assignment-3/pull/6#issuecomment-6315745686) These were all committed on the 21 Oct 2026. 
+- Requirement, responsibilities, test assertions and unrelated-scope checks: The change meets FR-06 and FR-07. AppointmentService.cancel_appointment finds the stored appointment, calls Appointment.cancel() and returns the same object. The tests are checked.
+- Key feedback: Whilst copilot is useful it shouldn't always be trusted and should always be looked over 
+- Author response/change and verification: No code was changed
+- Reviewer recheck and approval: (https://github.com/deniszimba/st1-assignment-3/pull/6#pullrequestreview-5599565998) 21 Oct 2026
+- Merge outcome and SHA: Merged into main: merge SHA 3ca7a3a4651d6751c8cb74133b316489cbe7407f (https://github.com/deniszimba/st1-assignment-3/commit/433a34524be0a4d30dae84246b43828b08ba2c5d) 
+- Significant Copilot assistance: Tari used Copilot Chat for the required review comparison
+- Linked issue closure: in the PR description issue #3 closed when PR #6 merged
+- Each member updated main: Every member updated to main, Tari Ganas, Denis Zimba, Tari Ganas, Ahron Singh
+- Integrated verification after merge: [command, directory, result and code SHA]
+
 
 ## H Copilot collaboration record
 
 Record meaningful required use, not every trivial completion. Repeat per significant interaction.
 
-- Member and task: [response]
-- Prompt/purpose and relevant issue/diff: [response]
-- Summary of output: [response]
-- Human check against actual code, requirements and tests: [response]
-- Decision — Accept / Modify / Reject: [select]
-- Reason: [response]
-- Verification/evidence: [link and result]
+- Member and task: Tari Ganas used Copilot as a second review for PR #4, which covered FR-02 patient search
+- Prompt/purpose and relevant issue/diff: Copilot was asked to compare the PR #4 changes with the acceptance criteria in issue #1. The Copilot response was posted after Tari’s human review. It was also done like this with PR #5 and PR #6
+- Summary of output: Copilot didn't find anything too wrong with it noted that ID trimming, case sensitivity and invalid-ID checks happen in the data store, which was outside the PR diff
+- Human check against actual code, requirements and tests: Tari checked data_store.py, domain.py and test_services.py. I went through the entire thing and 15 tests passed
+- Decision — Accept / Modify / Reject:
+  Accept: check the data store validation
+  Reject: tests only check the data store because they call the patient service
+  Reject: cancellation comment because cancellation was outside PR #4
+- Reason: The validation behaviour was confirmed in the existing code, so no code change was needed and the service tests check the required patient-search behaviour. Cancellation was handled separately in issue #3 and PR #6.
+- Verification/evidence: Tari recorded the human decisions. Running python -m pytest from project/ on commit 30367d2 produced 15 passed. [comment](https://github.com/deniszimba/st1-assignment-3/pull/4#issuecomment-6307395508)
 
 ## I Human versus Copilot review comparison
 
-- Human reviewer noticed before consulting Copilot: [response]
-- Copilot noticed: [response]
-- Overlap: [response]
-- What did the human reviewer notice that Copilot did not: [response]
-- What did Copilot identify that the human reviewer initially missed: [response]
+- Human reviewer noticed before consulting Copilot: Tari checked that the PR changed only services.py and test_services.py he checked the patient search requirements against the tests and ran the full test 
+- Copilot noticed: Copilot noticed that ID trimming and validation happen in the data store, which was outside the PR diff Copilot also recommended checking the code weather it was fully tested  
+- Overlap: Both the reviews found nothing really wrong and agreed that the change was focused on patient lookup and its tests.
+- What did the human reviewer notice that Copilot did not: Tari ran the tests and observed that 15 passed Copilot could review the supplied code but could not confirm that the tests had actually been run.
+- What did Copilot identify that the human reviewer initially missed: Copilot pointed out that the service depends on validation in the data store.
+  
 - Unsupported or incorrect Copilot suggestion: [response or none identified with explanation]
-- Human judgement accepted, modified or rejected, and why: [response]
-- Which evidence justified merge approval: [response]
+- Human judgement accepted, modified or rejected, and why:
+  Tari accepted the suggestion to check the data-store validation and confirmed that it worked correctly
+  Tari rejected the claim about the tests because they call the service
+  Tari rejected the cancellation comment because it was outside the PR’s scope
+  - Which evidence justified merge approval:
+  -  The change matched issue #1 the validation behaviour was confirmed and all 15 tests passed on commit 30367d2. Tari then submitted formal approval. 
 
 ## J Contributions
 
 Repeat per member. Include only categories that describe actual work; write not applicable where appropriate. Pairing or mentoring can be supported by a short corroborated note.
 
-- Member: [response]
-- Implementation: [work and evidence]
-- Testing: [work and evidence]
-- Review: [work and evidence]
-- Issue refinement: [work and evidence]
-- Design and responsibility discussion: [work and evidence]
-- Debugging or integration: [work and evidence]
-- Documentation or team support: [work and evidence]
+- Member: Ahron Singh
+- Implementation: PatientService.find_patient, PractitionerService.find_practitioner and AppointmentService.cancel_appointment in project/smartcare/services.py
+- Testing: created project/tests/test_services.py
+- Review: N/A
+- Issue refinement: Drafted the stage 6 issues and their acceptance criteria
+- Design and responsibility discussion: for example agreeing that cancellation must go through Appointment.cancel() rather than the service setting status with Tari, evidence is our conversation history
+- Debugging or integration: added the missing test file to PR #4 as a second commit (30367d2); pulled main and ran the tests after merges
+- Documentation or team support: Discord conversations and call logs with Tari.
+
+- Member: Tari Ganas
+- Implementation: N/A
+- Testing: ran the full suite on the PR #4 branch: 15 passed
+- Review: reviewed PR #4, ran the required Copilot comparison, recorded Accept/Reject decisions  and approved; reviewed PR #5, ran the Copilot comparison and recorded decisions; reviewed PR #6, ran the Copilot comparison, recorded decisions and approved (approval)
+- Issue refinement: Tari reviewed copilots recommendations
+- Design and responsibility discussion: See PR and issue history.
+- Debugging or integration: merged PR #4 into main (433a345); merged PR #5 into main (f36218e); merged PR #6 into main (3ca7a3a); [TO DO: pulled main and ran the tests after the merge]
+- Documentation or team support: drafted section A for FR-02 (acceptance criteria and scope wording) 
+
 
 ## K Exit question
 
-Why is a high commit count not necessarily evidence of strong contribution?
+A high commit count mostly just reflects habits. One person can turn a tiny change into many commits and another person could do it all in one commit for the same work, so the number provides nothing about quality or wether a requirement was met. In stage 6 All commits came from Ahron and Tari reviewed every PR, ran tests and compared copilots review with his own. Actual evidence of proving the commit works proides much more than just commit counts as a referral for quality. Better evidence is the linked issues, review comments, test results and each member's ability to explain the code.
 
 [response]
 
 ## L Stage 6 formative questions
 
-1. What is version control?
-
-[response]
+1. what is version control
+A system that records the changes to a project as commits, allowing the team to see what was changed, when it was changed and who it was changed by. it also allows you to compare versions and return to and earlier state.
 
 2. Why is a feature branch useful?
-
-[response]
+It keeps one fucused change serpeate from main until it has been tested and reviewed for completion. It allows memebers to work in parallel and the branches diff against main is what the reviwer checks.
 
 3. What makes a commit a good engineering commit?
-
-[response]
+It contains one coherent change, such as one behaviour and its tests, with no unrelated files or secrets. For tests, its clear and the message shows what changed.
 
 4. What is a pull request?
-
-[response]
+A request to merge a branch into main, it shows the ddiff and the issue and describes the behaviour of the change. For this assignment its where antoher memebr reviews and comments, requests, changes and approves before a merge.
 
 5. What is the purpose of code review?
+A different member checks the changed lines againsts the requirement and acceptance criteria. They look for defects, broken responsibilities, weak assertions and unrelated changes before the code reaches main.
 
-[response]
+6. What does Git Diff show?
+The lines added and removed between the versions. 
 
-6. What does a Git diff show?
+7. a shared set of criteria that a team uses to decide when a work item or product increment is officially complete and ready for release
 
-[response]
+8. A second opinion after the human reviewer has recorded their own observations. Ai can also be a quick way to check for extra stuff that could have been missed.Each significant suggestion is checked against the code, the requirements and an observed test run, then recorded as Accept, Modify or Reject.
 
-7. What is a Definition of Done?
+9. Commit count depends on how people split their work and can be inflated. It ignores quality and ignores reviewing, testing, diagnosing, documenting and explaining.
 
-[response]
 
-8. What is the appropriate role of GitHub Copilot in pull-request review?
-
-[response]
-
-9. Why should individual contribution not be judged only by commit count?
-
-[response]
-
-10. What is the Stage 6 engineering rule?
-
-[response]
+10. Review eachothers code and utilise tools to help with checks and tests.
 
 ## M Completion and handover
 
-- Starting SHA: [response]
-- Final Stage 6 code SHA: [response]
-- Test command: [response]
-- Working directory: [response]
-- Observed result: [response]
-- PR and another-member reviewer: [links]
-- Unresolved issue or none: [response]
-- Stage 7 handover status: [ready for tutor checkpoint / unresolved work]
-- Final submitted SHA if later than tested SHA: [response and evidence-only difference]
+- Starting SHA: 90d0d7f5c52379ab957e37cdd988c6a36017b675
+- Final Stage 6 code SHA: 3ca7a3a4651d6751c8cb74133b316489cbe7407f (merge of PR #6)
+- Test command: python -m pytest
+- Working directory: project/ (repository root, then cd project)
+- Observed result: All tests passed (33)
+- PR and another-member reviewer: PR #4, PR #5 and PR #6, all reviewed by Tari Ganas
+- Unresolved issue or none: Tari forgot to do a formal approval on PR #5
+- Stage 7 handover status: Ready
+- Final submitted SHA if later than tested SHA: SHA 3ca7a3a
 
 - [ ] Three Stage 6 service targets completed and checked.
 - [ ] Original supplied tests retained and passing.
