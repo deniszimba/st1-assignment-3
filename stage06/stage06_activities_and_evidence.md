@@ -4,7 +4,7 @@ Complete this one group record. Link actual issues, diffs, tests and reviews; av
 
 - Group/tutorial: Wed 4:30 - 6:30 Group 3
 - Members, GitHub usernames and cohorts: Andy Hoang, Denis Zimba, Tari Ganas, Ahron Singh typicalgeezer42
-- Repository URL: [[response]](https://github.com/deniszimba/st1-assignment-3)
+- Repository URL: (https://github.com/deniszimba/st1-assignment-3)
 - Starting SHA: 90d0d7f5c52379ab957e37cdd988c6a36017b675 (“Add shared SmartCare Assignment 3 starter”, Denis Zimba, 14 Oct 2026)
 
 ## A Requirement to issue activities
@@ -100,23 +100,27 @@ A cancellation PR also renames unrelated patient fields, restructures unrelated 
 GitHub Copilot says: "Looks good; tests pass."
 
 - Missing evidence: No test commands are provided, no SHA, and copilot cant actually see our test run, so its essentially another unverified ai claim. it names no requirement or acceptance, with no details 
-- Follow-up review question 1: [response]
-- Follow-up review question 2: [response]
-- Follow-up review question 3: [response]
-- Follow-up review question 4: [response]
-- Follow-up review question 5: [response]
-- Additional questions if useful: [response]
+- Follow-up review question 1: Which test run is "tests pass" based on? Give the command the directory, the commit SHA and the observed output or say clearly that no run was observed.
 
-## E Team workflow agreement
+- Follow-up review question 2: Which claim shows that cancel_appointment returns the same stored object and that its status is CANCELLED?
+
+- Follow-up review question 3: Where is FR-07 checked? That the cancelled appointment is still returned by find_appointments and still in list_appointments?
+- Follow-up review question 4: What happens on a second cancellation or on a COMPLETED appointment? 
+- Follow-up review question 5: Does the diff use Appointment.cancel() or does it set the status directly, delete the record or build a replacement? 
+- Additional questions if useful: How does the code tell an unknown ID how does it tell an unknown ID like LookupError apart from ValueError and is there a test for each?
+
+## E Team workflow agreement 
+
+Agreed by: Andy Hoang, Denis Zimba, Tari Ganas, Ahron Singh 23/10/2026
 
 | Practice | Team agreement |
 |---|---|
-| Branch naming | [response] |
-| Commit message convention | [response] |
-| PR size | [response] |
-| Another-member review requirement | [response] |
-| Merge rule | [response] |
-| Significant Copilot disclosure rule | [response] |
+| Branch naming | feature/<short-task> for new behaviour and fix/<short-task> for defects, one branch per issue, for example feature/patient-lookup Never commit routine work directly to main. |
+| Commit message convention |Use short, clear messages that describe the action, such as Add patient search by ID`. Avoid vague messages such as changes or fix stuff|
+| PR size | Keep each PR focused on one issue at a time |
+| Another-member review requirement | Another member must review the changes in the file before the commits are merged |
+| Merge rule | Merge only after the tests pass, feedback is answered and another member approves. |
+| Significant Copilot disclosure rule | Make sure to review any important Copilot help and make sure to use it ethically and explain how the output was checked |
 
 ## F Issue and backlog index
 
@@ -124,8 +128,11 @@ Create at least two focused issues. Add a linked practitioner-lookup issue or an
 
 | Issue link | Requirement | Owner | Acceptance criteria or precise link | Status |
 |---|---|---|---|---|
-| [issue 1] | [response] | [response] | [response] | [response] |
-| [issue 2] | [response] | [response] | [response] | [response] |
+|[#1](https://github.com/deniszimba/st1-assignment-3/issues/1) | FR-02 Patient search (AC-02.1, AC-02.2) | Ahron Singh | Section A, FR-02 criteria 1 to 6 | Closed by [PR #4](https://github.com/deniszimba/st1-assignment-3/pull/4) |
+
+|[#2](https://github.com/deniszimba/st1-assignment-3/issues/2) | Supporting practitioner lookup over FR-03 registrations | Ahron Singh | Section A, supporting practitioner lookup criteria | Closed by [PR #5](https://github.com/deniszimba/st1-assignment-3/pull/5) | 
+
+|[#3](https://github.com/deniszimba/st1-assignment-3/issues/3) | FR-06 cancellation with FR-07 retained history (AC-05.1 to AC-05.3) | Ahron Singh | Section A, FR-06/FR-07 criteria 1 to 7 | Closed by [PR #6](https://github.com/deniszimba/st1-assignment-3/pull/6) |
 
 ## G Pull request evidence
 
