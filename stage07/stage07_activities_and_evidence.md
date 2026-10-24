@@ -296,6 +296,7 @@ Run python -m pytest from project/. Retain all accumulated tests. Record the tes
 | Command | Working directory | Code SHA | Passed | Failed | Failure summary | Product defect / test defect / unresolved | Evidence and interpretation |
 |---|---|---|---|---|---|---|---|
 | python3 -m pytest | project/ | 9b422491b8de003eef0517866e26de5a5315e4b1 | 33 | 0 | None | No defect identified | Baseline before Stage 7 changes; all existing tests passed |
+| python3 -m pytest | project/ | d7ea23b5c8d2f9dccb0478bd78e3c8b027442be6 | 45 | 0 | None | No defect identified | All Stage 7 and existing regression tests passed |
 
 Individual test runs and changed-order independence evidence:
 - `python3 -m pytest tests/test_domain.py::test_blank_patient_id_is_rejected`: 1
@@ -304,7 +305,7 @@ Individual test runs and changed-order independence evidence:
 passed.
 - Service test followed by domain test: 2 passed.
 - Domain test followed by service test: 2 passed.
-- Modified T7-S03 test: 1 passed.
+- Modified T7-S03 test: 1 passed. 
 
 Optional tutor-led demonstration notes: [optional; leave blank if not used]
 A meaningful test should detect a relevant incorrect result. Students do not have to perform the demonstration or submit failure/restoration evidence for assessment. The tutor restores the example and reruns its tests. This is not a Stage 8     fault activity.
