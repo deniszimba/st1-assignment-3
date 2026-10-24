@@ -110,6 +110,16 @@ Assign TEST IDs before implementation or generation. Use canonical AC IDs with t
 
 | FR-05 | Revision 2 conflict rule | T7-S06 | Service | test_cancelled_appointment_releases_practitioner_slot in tests/test_services.py | A cancelled booking does not occupy the time slot | Passed | Tari |
 
+| FR-01 | Validation contract: "IDs are strings, trimmed, non-blank"; required names are non-blank | T7-D08 | Domain | test_valid_patient_stores_trimmed_values in tests/test_domain.py | A valid Patient keeps its trimmed ID and name | Passed | Ahron - stage 7 follow-up |
+
+| FR-03 | Validation contract: IDs trimmed; required name and specialty non-blank | T7-D09 | Domain | test_valid_practitioner_stores_trimmed_values in tests/test_domain.py | A valid Practitioner keeps its trimmed ID, name and specialty | Passed | Ahron - stage 7 follow-up |
+
+| FR-01 | Validation contract: "Required names and specialty are non-blank" | T7-D10 | Domain | test_blank_patient_name_is_rejected in tests/test_domain.py | A blank or spaces-only patient name raises ValueError | Passed | Ahron - stage 7 follow-up |
+
+| FR-04 | Datetime contract: "local naive datetime values at minute precision"; "Timezone-aware values and nonzero seconds/microseconds are invalid" | T7-D11 | Domain | test_appointment_rejects_seconds_or_timezone in tests/test_domain.py | Seconds, microseconds or a timezone raise ValueError | Passed | Ahron - stage 7 follow-up |
+
+| FR-04 | AC-03.2: Booking an unknown patient or practitioner is rejected | T7-S07 | Service | test_booking_unknown_practitioner_is_rejected_without_change in tests/test_services.py | LookupError is raised and the stored appointments are unchanged | Passed | Ahron - stage 7 follow-up |
+
 ## C Test Design
 
 Use descriptive test names such as test_cancel_changes_status() or test_blank_patient_id_is_rejected(). Explain what new evidence each case adds.
@@ -142,6 +152,16 @@ Use descriptive test names such as test_cancel_changes_status() or test_blank_pa
 | T7-D07 | FR-04 | Appointment validation contract | Negative | Create appointments using invalid patient, practitioner, date or status values. | ValueError is raised. | Checks appointment input validation. |
 
 | T7-S06 | FR-05 | Revision 2 conflict rule | Boundary | Cancel a booking and reuse the same practitioner and time. | The new booking succeeds and both appointments remain stored. | Checks that a cancelled booking does not occupy the slot. |
+
+| T7-D08 | FR-01 | Validation contract (trimmed IDs, required name) | Positive / Boundary | Create a Patient with spaces around the ID and name. | The stored ID is "P1" and the name is "Alex Example". | No earlier test checked a valid Patient's stored values directly. |
+
+| T7-D09 | FR-03 | Validation contract (trimmed ID, required name and specialty) | Positive / Boundary | Create a Practitioner with spaces around every field. | The stored ID, name and specialty are trimmed. | No earlier test checked a valid Practitioner's stored values directly. |
+
+| T7-D10 | FR-01 | Validation contract (required names non-blank) | Negative / Boundary | Create a Patient with an empty and a spaces-only name. | ValueError is raised for each. | Earlier tests only checked a blank patient ID, not a blank name. |
+
+| T7-D11 | FR-04 | Datetime contract (naive, minute precision) | Negative / Boundary | Create an Appointment at 9:00:30, at 9:00 plus microseconds, and at 9:00 UTC. | ValueError is raised for each. | Earlier tests only used a non-datetime value; this checks the precise datetime boundary. |
+
+| T7-S07 | FR-04 | AC-03.2 | Negative | Book a registered patient with an unknown practitioner ID. | LookupError is raised and only the original appointment remains. | The supplied test only covered an unknown patient. |
 
 ## D Arrange Act Assert Record
 
@@ -176,6 +196,16 @@ Arrange test data; act on one meaningful behaviour; assert the required observab
 
 | T7-S06 | Create and cancel a scheduled appointment. | Book the same practitioner at the same time again. | The new booking succeeds, the first stays CANCELLED and both remain stored. | Proves a cancelled booking releases the time slot without deleting history. |
 
+| T7-D08 | Prepare an ID and name with surrounding spaces. | Construct a Patient. | patient_id is "P1" and name is "Alex Example". | Proves valid patient data is stored, using the trimming rule. |
+
+| T7-D09 | Prepare an ID, name and specialty with surrounding spaces. | Construct a Practitioner. | All three stored values are trimmed. | Proves valid practitioner data is stored, using the trimming rule. |
+
+| T7-D10 | Prepare an empty and a spaces-only name (parametrised). | Construct a Patient with each. | pytest.raises(ValueError) for each case. | Proves the required-name rule, which no earlier test checked. |
+
+| T7-D11 | Prepare a patient and practitioner, and three invalid datetimes (parametrised). | Construct an Appointment with each datetime. | pytest.raises(ValueError) for each case. | Proves the minute-precision, timezone-free datetime rule at its exact boundary. |
+
+| T7-S07 | Fresh store with one SCHEDULED appointment A1. | Book A2 for P1 with unknown practitioner D9. | pytest.raises(LookupError); the store still lists only A1, still SCHEDULED. | Proves AC-03.2 for practitioners and that the rejected booking left state unchanged. |
+
 ## E Domain Test Evidence
 
 Cover Patient/Practitioner construction and validation; Appointment construction, initial status, cancellation and illegal/repeated transitions. Preserve the four reference intentions described in handout Part C.
@@ -197,7 +227,13 @@ Cover Patient/Practitioner construction and validation; Appointment construction
 
 | T7-D07 | Invalid appointment values are rejected | tests/test_domain.py::test_appointment_rejects_invalid_values | Passed |
 
+| T7-D08 | Valid Patient keeps trimmed ID and name | tests/test_domain.py::test_valid_patient_stores_trimmed_values | Passed |
 
+| T7-D09 | Valid Practitioner keeps trimmed ID, name and specialty | tests/test_domain.py::test_valid_practitioner_stores_trimmed_values | Passed |
+
+| T7-D10 | Blank or spaces-only patient name is rejected | tests/test_domain.py::test_blank_patient_name_is_rejected | Passed (2 cases) |
+
+| T7-D11 | Seconds, microseconds or timezone are rejected | tests/test_domain.py::test_appointment_rejects_seconds_or_timezone | Passed (3 cases) |
 ## F Service Test Evidence
 
 Use fresh shared SmartCareDataStore state, registered objects and completed Stage 6 services.
@@ -217,6 +253,7 @@ Use fresh shared SmartCareDataStore state, registered objects and completed Stag
 
 | T7-S06 | Cancelled appointment releases the practitioner’s time slot | FR-05 / Revision 2 conflict rule | `tests/test_services.py::test_cancelled_appointment_releases_practitioner_slot` | Passed |
 
+| T7-S07 | Booking an unknown practitioner is rejected without change | FR-04 / AC-03.2 | `tests/test_services.py::test_booking_unknown_practitioner_is_rejected_without_change` | Passed |
 ## G Negative and Boundary Cases
 
 Connect cases to actual contracts and verify unchanged state after rejection.
@@ -235,6 +272,14 @@ Connect cases to actual contracts and verify unchanged state after rejection.
 | Cancelled booking slot | Book the same practitioner and time after cancellation | The new booking succeeds and both appointments remain stored | T7-S06 |
 
 | Appointment cancellation | Cancel an already cancelled or completed appointment | `ValueError` is raised and the status stays unchanged | T7-D05, T7-D06 |
+
+| Required names | Empty or spaces-only patient name | `ValueError` is raised | T7-D10 |
+
+| Trimmed fields | ID, name and specialty with surrounding spaces | Values are stored trimmed | T7-D08, T7-D09 |
+
+| Appointment time | Seconds, microseconds or a timezone on the datetime | `ValueError` is raised | T7-D11 |
+
+| Booking participants | Registered patient with an unknown practitioner ID | `LookupError` is raised and the stored appointments are unchanged | T7-S07 |
 
 ## H GitHub Copilot Test Design
 
@@ -301,6 +346,8 @@ Run python -m pytest from project/. Retain all accumulated tests. Record the tes
 Individual test runs and changed-order independence evidence:
 - `python3 -m pytest tests/test_domain.py::test_blank_patient_id_is_rejected`: 1
 - `python3 -m pytest tests/test_services.py::test_cancelled_appointment_releases_practitioner_slot`: 1
+
+| python -m pytest | project/ | bda3c29443a86f7e2f746893fe7a1ab871a59022 | <53, expected 53> | Follow-up tests from the PR #8 review (T7-D08 to T7-D11, T7-S07)|
 
 passed.
 - Service test followed by domain test: 2 passed.
