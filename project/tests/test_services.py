@@ -230,3 +230,88 @@ def test_cancel_changes_only_the_target_appointment() -> None:
     appointments.cancel_appointment('A1')
     assert first.status is AppointmentStatus.CANCELLED
     assert second.status is AppointmentStatus.SCHEDULED
+
+def test_register_patient_stores_valid_patient() -> None:
+    # Create a new store and service.
+    data_store = SmartCareDataStore()
+    patients = PatientService(data_store)
+
+    # Register a patient.
+    patient = patients.register_patient("P7", "Sam Example")
+
+    # Check that the patient was stored.
+    assert data_store.find_patient("P7") is patient
+    assert data_store.list_patients() == [patient]
+
+def test_duplicate_patient_id_is_rejected_without_change() -> None:
+    # Register the original patient.
+    data_store = SmartCareDataStore()
+    patients = PatientService(data_store)
+    original = patients.register_patient("P1", "Alex Example")
+
+    # Try to register the same ID again.
+    with pytest.raises(ValueError):
+        patients.register_patient(" P1 ", "Replacement Name")
+
+    # Check that the original patient stayed unchanged.
+    assert data_store.find_patient("P1") is original
+    assert original.name == "Alex Example"
+    assert data_store.list_patients() == [original]
+
+def test_same_practitioner_exact_time_is_rejected() -> None:
+    # Create the first appointment.
+    data_store, appointments, original = appointment_setup()
+
+    # Try the same practitioner at the same time.
+    with pytest.raises(ValueError):
+        appointments.book_appointment(
+            "A2",
+            "P1",
+            "D1",
+            datetime(2026, 10, 1, 9, 0),
+        )
+
+    # Check that only the original is stored.
+    assert data_store.list_appointments() == [original]
+    assert original.status is AppointmentStatus.SCHEDULED
+
+def test_different_practitioner_same_time_is_allowed() -> None:
+    # Create the first appointment.
+    data_store, appointments, first = appointment_setup()
+
+    # Register another practitioner.
+    PractitionerService(data_store).register_practitioner(
+        "D2",
+        "Morgan Example",
+        "General",
+    )
+
+    # Book the second practitioner at the same time.
+    second = appointments.book_appointment(
+        "A2",
+        "P1",
+        "D2",
+        datetime(2026, 10, 1, 9, 0),
+    )
+
+    # Check that both appointments are stored.
+    assert data_store.list_appointments() == [first, second]
+    assert second.practitioner is data_store.find_practitioner("D2")
+
+def test_cancelled_appointment_releases_practitioner_slot() -> None:
+    # Create and cancel the first appointment.
+    data_store, appointments, first = appointment_setup()
+    appointments.cancel_appointment("A1")
+
+    # Book the same practitioner at the same time.
+    second = appointments.book_appointment(
+        "A2",
+        "P1",
+        "D1",
+        datetime(2026, 10, 1, 9, 0),
+    )
+
+    # Check both appointments.
+    assert first.status is AppointmentStatus.CANCELLED
+    assert second.status is AppointmentStatus.SCHEDULED
+    assert data_store.list_appointments() == [first, second]
