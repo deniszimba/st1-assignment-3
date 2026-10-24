@@ -155,10 +155,10 @@ Create at least two focused issues. Add a linked practitioner-lookup issue or an
 - Merge outcome and SHA: merged into main by Tari Ganas, 21 Oct 2026, merge commit [433a34524be0a4d30dae84246b43828b08ba2c5d](https://github.com/deniszimba/st1-assignment-3/commit/433a34524be0a4d30dae84246b43828b08ba2c5d) 
 - Significant Copilot assistance: Tari used Copilot Chat for the required review comparison 
 - Linked issue closure: in the PR description issue #1 closed when PR #4 merged
-- Each member updated main: Every member updated to main, Tari Ganas, Denis Zimba, Tari Ganas, Ahron Singh 
-- Integrated verification after merge: [command, directory, result and code SHA]
+- Each member updated main: Every member updated to main, Tari Ganas, Ahron Singh 
+- Integrated verification after merge: - Integrated verification after merge: `python -m pytest` in `project/` on merge commit 433a34524be0a4d30dae84246b43828b08ba2c5d: 15 passed (run by Ahron Singh, 23 Oct 2026, by checking out the merge commit; the run straight after the merge was not recorded)
 
-PR #5: Cancel a scheduled appointment and keep it in history
+PR #5: Practitioner lookup by ID
 
 - PR link and title: [#5](https://github.com/deniszimba/st1-assignment-3/pull/5) Practitioner lookup by ID
 - Linked issue and requirement: [#2](https://github.com/deniszimba/st1-assignment-3/issues/2), supporting operation over FR-03 registrations
@@ -174,11 +174,11 @@ PR #5: Cancel a scheduled appointment and keep it in history
 - Key feedback: Whilst copilot is useful it shouldn't always be trusted and should always be looked over 
 - Author response/change and verification: No code was changed 
 - Reviewer recheck and approval: (https://github.com/deniszimba/st1-assignment-3/pull/5#issuecomment-6309721002) 21 Oct 2026
-- Merge outcome and SHA: Merged into main: merge SHA f36218eb37b264b2f6b435a7933589ab07176390 (https://github.com/deniszimba/st1-assignment-3/commit/433a34524be0a4d30dae84246b43828b08ba2c5d) 
+- Merge outcome and SHA: Merged into main: merge SHA f36218eb37b264b2f6b435a7933589ab07176390 (https://github.com/deniszimba/st1-assignment-3/commit/f36218eb37b264b2f6b435a7933589ab07176390) 
 - Significant Copilot assistance: Tari used Copilot Chat for the required review comparison
 - Linked issue closure: in the PR description issue #2 closed when PR #5 merged
-- Each member updated main: Every member updated to main, Tari Ganas, Denis Zimba, Tari Ganas, Ahron Singh
-- Integrated verification after merge: [command, directory, result and code SHA]
+- Each member updated main: Every member updated to main, Tari Ganas, Ahron Singh
+- Integrated verification after merge: `python -m pytest` in `project/` on merge commit f36218eb37b264b2f6b435a7933589ab07176390: 22 passed (run by Ahron Singh, 23 Oct 2026, by checking out the merge commit; the run straight after the merge was not recorded)
 
   PR #6: Cancel a scheduled appointment and keep it in history
 
@@ -197,11 +197,11 @@ PR #5: Cancel a scheduled appointment and keep it in history
 - Key feedback: Whilst copilot is useful it shouldn't always be trusted and should always be looked over 
 - Author response/change and verification: No code was changed
 - Reviewer recheck and approval: (https://github.com/deniszimba/st1-assignment-3/pull/6#pullrequestreview-5599565998) 21 Oct 2026
-- Merge outcome and SHA: Merged into main: merge SHA 3ca7a3a4651d6751c8cb74133b316489cbe7407f (https://github.com/deniszimba/st1-assignment-3/commit/433a34524be0a4d30dae84246b43828b08ba2c5d) 
+- Merge outcome and SHA: Merged into main: merge SHA 3ca7a3a4651d6751c8cb74133b316489cbe7407f (https://github.com/deniszimba/st1-assignment-3/commit/3ca7a3a4651d6751c8cb74133b316489cbe7407f) 
 - Significant Copilot assistance: Tari used Copilot Chat for the required review comparison
 - Linked issue closure: in the PR description issue #3 closed when PR #6 merged
-- Each member updated main: Every member updated to main, Tari Ganas, Denis Zimba, Tari Ganas, Ahron Singh
-- Integrated verification after merge: [command, directory, result and code SHA]
+- Each member updated main: Every member updated to main, Tari Ganas, Ahron Singh
+- Integrated verification after merge: `python -m pytest` in `project/` on merge commit 3ca7a3a4651d6751c8cb74133b316489cbe7407f: 33 passed (run by Ahron Singh, 23 Oct 2026, by checking out the merge commit; the run straight after the merge was not recorded)
 
 
 ## H Copilot collaboration record
