@@ -1,6 +1,6 @@
 """Stage 7 domain tests."""
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pytest
 
@@ -111,3 +111,41 @@ def test_appointment_rejects_invalid_values() -> None:
     # Check an invalid status.
     with pytest.raises(ValueError):
         Appointment("A1", patient, practitioner, when, "scheduled")
+
+
+def test_valid_patient_stores_trimmed_values() -> None:
+    """T7-D08: a valid Patient keeps its trimmed ID and name."""
+    patient = Patient("  P1  ", "  Alex Example  ")
+    assert patient.patient_id == "P1"
+    assert patient.name == "Alex Example"
+
+
+def test_valid_practitioner_stores_trimmed_values() -> None:
+    """T7-D09: a valid Practitioner keeps its trimmed ID, name and specialty."""
+    practitioner = Practitioner("  D1  ", "  Taylor Example  ", "  General  ")
+    assert practitioner.practitioner_id == "D1"
+    assert practitioner.name == "Taylor Example"
+    assert practitioner.specialty == "General"
+
+
+@pytest.mark.parametrize("bad_name", ["", "   "])
+def test_blank_patient_name_is_rejected(bad_name) -> None:
+    """T7-D10: a blank or spaces-only patient name raises ValueError."""
+    with pytest.raises(ValueError):
+        Patient("P1", bad_name)
+
+
+@pytest.mark.parametrize(
+    "bad_time",
+    [
+        datetime(2026, 10, 1, 9, 0, 30),
+        datetime(2026, 10, 1, 9, 0, 0, 500),
+        datetime(2026, 10, 1, 9, 0, tzinfo=timezone.utc),
+    ],
+)
+def test_appointment_rejects_seconds_or_timezone(bad_time) -> None:
+    """T7-D11: only a local naive datetime at minute precision is valid."""
+    patient = Patient("P1", "Alex Example")
+    practitioner = Practitioner("D1", "Taylor Example", "General")
+    with pytest.raises(ValueError):
+        Appointment("A1", patient, practitioner, bad_time)
