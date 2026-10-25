@@ -315,3 +315,17 @@ def test_cancelled_appointment_releases_practitioner_slot() -> None:
     assert first.status is AppointmentStatus.CANCELLED
     assert second.status is AppointmentStatus.SCHEDULED
     assert data_store.list_appointments() == [first, second]
+
+
+def test_booking_unknown_practitioner_is_rejected_without_change() -> None:
+    """T7-S07 (AC-03.2): booking an unknown practitioner raises LookupError."""
+    data_store, appointments, original = appointment_setup()
+    with pytest.raises(LookupError):
+        appointments.book_appointment(
+            "A2",
+            "P1",
+            "D9",
+            datetime(2026, 10, 1, 10, 0),
+        )
+    assert data_store.list_appointments() == [original]
+    assert original.status is AppointmentStatus.SCHEDULED
