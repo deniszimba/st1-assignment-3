@@ -343,11 +343,11 @@ Run python -m pytest from project/. Retain all accumulated tests. Record the tes
 | python3 -m pytest | project/ | 9b422491b8de003eef0517866e26de5a5315e4b1 | 33 | 0 | None | No defect identified | Baseline before Stage 7 changes; all existing tests passed |
 | python3 -m pytest | project/ | d7ea23b5c8d2f9dccb0478bd78e3c8b027442be6 | 45 | 0 | None | No defect identified | All Stage 7 and existing regression tests passed |
 
+| python -m pytest | project/ | bda3c29443a86f7e2f746893fe7a1ab871a59022 | 53 | 0 | None | No defect identified | Follow-up tests from the PR #8 review (T7-D08 to T7-D11, T7-S07) added; all accumulated tests retained |
+
 Individual test runs and changed-order independence evidence:
 - `python3 -m pytest tests/test_domain.py::test_blank_patient_id_is_rejected`: 1
 - `python3 -m pytest tests/test_services.py::test_cancelled_appointment_releases_practitioner_slot`: 1
-
-| python -m pytest | project/ | bda3c29443a86f7e2f746893fe7a1ab871a59022 | <53, expected 53> | Follow-up tests from the PR #8 review (T7-D08 to T7-D11, T7-S07)|
 
 passed.
 - Service test followed by domain test: 2 passed.
@@ -374,7 +374,10 @@ Use links rather than copying GitHub history. Continue the Stage 6 workflow; no 
 
 | Issue/task | Branch | PR | Reviewer | Key feedback | Outcome |
 |---|---|---|---|---|---|
-| [complete] | [complete] | [complete] | [complete] | [complete] | [complete] |
+
+| Stage 7 testing and verification | feature/stage7-testing | [PR #8](https://github.com/deniszimba/st1-assignment-3/pull/8) | Ahron Singh (typicalgeezer42) | Ran 45 tests successfully and identified four missing behaviours, recorded in [Issue #9](https://github.com/deniszimba/st1-assignment-3/issues/9). | Approved and merged as `3e5e528049989f6730dcb64ec93ca9cc856318e0` |
+
+| [Issue #9](https://github.com/deniszimba/st1-assignment-3/issues/9) | feature/stage7-missing-tests | [PR #10](https://github.com/deniszimba/st1-assignment-3/pull/10) | Tari Ganas (`tariganas225-bit`) | Ran 53 tests and confirmed T7-D08 to T7-D11 and T7-S07 matched their requirements. The workbook rows went directly to main in `f4b62e9` instead of through PR #10. | Approved and merged as `3f896bc4c8ba4a260f4142e5f283234b91180314` |
 
 ## M Contribution Evidence
 
@@ -382,7 +385,10 @@ Record actual work in test design, implementation, review, traceability, diagnos
 
 | Member | Actual contribution | Evidence link |
 |---|---|---|
-| [complete] | [complete] | [complete] |
+
+| Tari Ganas | Designed test cases and IDs, implemented T7-D01 to T7-D07 and T7-S01 to T7-S06, ran targeted, changed-order and full regression tests, evaluated Copilot suggestions, recorded traceability, and reviewed PR #10. | [PR #8](https://github.com/deniszimba/st1-assignment-3/pull/8), [PR #10 review](https://github.com/deniszimba/st1-assignment-3/pull/10) |
+
+| Ahron Singh | Reviewed PR #8, identified missing behaviours, recorded Issue #9, implemented T7-D08 to T7-D11 and T7-S07, added their workbook rows, and verified the 53-test suite. | [PR #8 review](https://github.com/deniszimba/st1-assignment-3/pull/8), [Issue #9](https://github.com/deniszimba/st1-assignment-3/issues/9), [PR #10](https://github.com/deniszimba/st1-assignment-3/pull/10), [commit f4b62e9](https://github.com/deniszimba/st1-assignment-3/commit/f4b62e9) |
 
 ## N Formative Questions
 
@@ -418,9 +424,9 @@ Every test must trace to a requirement and detect a relevant incorrect result
 
 ## O Stage Completion
 
-Tested Stage 7 main SHA: [complete]
-Full-suite result: [complete]
-Unresolved defects and effect on baseline: [complete or none]
-Clean working tree and integration evidence: [complete]
-Stage 8 handover status: [complete; no Stage 8 work assigned]
-All tutorial/formative responses and traceability/Copilot decisions complete: [confirm]
+Tested Stage 7 main SHA: `3f896bc4c8ba4a260f4142e5f283234b91180314`
+Full-suite result: `python3 -m pytest` in `project/`: 53 passed, 0 failed
+Unresolved defects and effect on baseline: None
+Clean working tree and integration evidence: PR #10 was merged; Tari pulled main and confirmed 53 passed
+Stage 8 handover status: Ready; no Stage 8 work started
+All tutorial/formative responses and traceability/Copilot decisions complete: Confirmed
