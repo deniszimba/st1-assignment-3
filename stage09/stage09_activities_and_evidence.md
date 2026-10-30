@@ -2,9 +2,19 @@
 
 Common UG and PG record. All Assignment 3 stage materials are provided from the beginning. Complete this stage only after the previous applicable stage has been integrated, verified and recorded. Use this supplied record in stage09/ in your EXISTING repository. Preserve project/, all earlier tests, records and responses. Do not download another starter or copy staff solutions. Use the Stage 9 handout and Overview/revision 2 baseline. Keep responses concise and link accessible artefacts; do not paste entire logs or private peer ratings.
 
-Group: <!-- complete -->
-Members and responsibilities: <!-- complete -->
-Stage 8 integrated SHA, command, working directory and actual result: <!-- complete -->
+Group: Group 3, Wednesday 4:30–6:30 tutorial.
+
+Members and responsibilities:
+- Denis Zimba: Stage 9 queries, services, console integration and testing.
+- Andy Hoang: Stage 8 debugging and refactoring.
+- Ahron Singh and Tari Ganas: Stage 6 and 7 development and testing.
+- All members: Group review, integration and final release.
+
+Stage 8 integrated SHA, command, working directory and actual result:
+- SHA: e8478d681d17f1a7aae527573e081c6ebe89446b
+- Working directory: project/
+- Command: python -m pytest -q
+- Result: 55 passed in 0.09s on 30 October 2026.
 
 ## A. Tutorial activities
 
@@ -12,14 +22,16 @@ Stage 8 integrated SHA, command, working directory and actual result: <!-- compl
 
 | Information | Required session/domain or transient state? | Requirement or reason |
 |---|---|---|
-| Patient identity | | |
-| Appointment history | | |
-| Temporary menu choice | | |
-| Practitioner specialty | | |
-| Debug print output | | |
-| Appointment status | | |
+| Patient identity | Required session/domain state | FR-01 and FR-02 require registering and finding patients using their IDs. |
+| Appointment history | Required session/domain state | FR-07 and FR-08 require cancelled appointments to remain accessible during the session. |
+| Temporary menu choice | Transient interaction state | Only needed to process the current menu selection. |
+| Practitioner specialty | Required session/domain state | FR-03 requires practitioners to have a specialty. |
+| Debug print output | Transient debug state | Used for troubleshooting, not part of stored domain information. |
+| Appointment status | Required session/domain state | FR-06, FR-07 and BR-08 define the appointment states and cancellation rules. |
 
-What is intentionally lost on exit? <!-- response -->
+What is intentionally lost on exit?
+All registered patients, practitioners and appointments are lost when the program closes. FR-10 removes the requirement for permanent storage, so SmartCare only keeps information during the current session.
+
 
 ### A2 Interface and domain data plan
 
