@@ -7,6 +7,8 @@ All Assignment 3 stage materials are provided from the beginning. Complete this 
 Group/tutorial: [complete] Wednesday 4:30 - 6:30, Group 3.
 Members and UG/PG cohorts: [complete] Andy Hoang, Denis Zimba, Tari Ganas and Ahron Singh
 Record owner / contribution links for each member: [complete]
+Owner: ANDY HOANG
+
 
 Use concise results and accessible artefact links rather than copying entire logs. Keep human-first entries before consulting GitHub Copilot. Link shared evidence once; do not repeat it across sections. No entries below are specimen answers or claimed results.
 
@@ -399,18 +401,49 @@ No unrelated failures remained after both repairs and temporary 'AttributeError'
 ## H. Refactoring decision and before/after verification
  
 Smell and exact location: [complete]
+'SmartCareDataStore.has_practitioner_conflict' in 'project/smartcare/data_store.py' used the magic string "scheduled". This method accessed 'appointment.status.value' and compared its internal value directly with that string, this would therefore cause unnecessary dependance on how th enum value was represented internally. This also made the intended appointment status to be less explicit to the reader. The main issue was a code smell rather than a product defect as the tests already passed beforehand.
+
+
 Small proposed structural change / why justified: [complete before editing]
+The proposed change was to modify the 'appointment.status.value == "scheduled" with appointment.status is AppointmentStatus.SCHEDULED. As the already existing enum was already imported into the 'data_store.py' so therefore no new dependency was needed. By using the enum member it communicates the intended status more explicitly. It also helped to reduce the risk of any spelling mistakes or inconsistent magic strings. This was a very small structural change that did not appear to alter the conflict rule.
+
+
 External behaviour to preserve / relevant tests: [complete]
+The same practitioner must still be rejected if another scheduled appointment exists at the same exact date and time. A different practitioner must then remain permitted at that time and a cancelled appointment must continue to release the practitioner's slot. Appointment identity, stored state and exception behaviour also needs to remain unmodified. The regression tests, focused service test and complete suite were all used to protect these very behaviours. 
+
+
 Before result: see G, full passing suite.
+The before-refactor code SHA was bac6afe36e5dfeb881a9561f968142c16906d154. The complete suite was run from /Users/andyhoang/st1-assignment-3/project. The command used was python3 -m pytest '/Users/andyhoang/st1-assignment-3/project/test_regressions.py'. Pytest collected 55 tests from the existing and regression-test files. The result was 55 passed in 0.04s.
+
+
 Actual change / diff / separate refactor SHA: [complete]
+The refactor removed the 'appointment.status.value == "scheduled"' from the conflict condiiton, this expression was then changed to 'appointment.status is AppointmentStatus.SCHEDULED'. The Git commit showcased onw insertion and one deletion within the datastore.py file and no other production-code lines were included in the refactor commit. 
+Code SHA: 27d4856e925992960bdb5fc3fc387f3b6cab8d55
+
+
 Focused and full after-refactor commands / working directory / results / evidence: [complete]
+The syntax check python3 -m py_compile smartcare/data_store.py completed without an error. Running python3 -m pytest test_regressions.py -v produced 2 passed in 0.00s. The four focused practitioner-conflict and cancelled-slot tests produced 4 passed in 0.01s. The complete suite was then run from the project/ directory using the existing tests and the regression-test file. The final after-refactor result was 55 passed in 0.03s.
+
+
 Result — accepted, revised or rejected / reason / behaviour-preservation conclusion: [complete]
+The refactor was then accepted as it greatly improved readability whilst still keeping the intended conflict rule unchanged. The enum comaprison more clearly identified that only the scheduled appointments would create conflicts. Whilst the focused tests confirmed that the same-practitioner conflicts would be rejected and different practitioner bookings remained permitted. It also confirmed that cancelled appointments would continue to release their time slots, and finally all 55 tests passed after the change, providing evidence that external behaviour was preserved.
+
 
 ## I. Git, human review and integration
 
 Issues for both defects / refactor scope and owners: [complete]
+Focused Github issues are still needed to be created or linked for F8-01, F8-02 and the refactoring decision. The F8-01 covers restoring the same practitioner conflict rule whilst F8-02 covered the retained cancelled appointment lookup. The main refactor issue covered replacing the magic 'scheduled' string with the 'AppointmentStatus.SCHEDULED'. Andy Hoang completed these repairs and refactor work.
+
+
 Branch / prepared, repair and refactor checkpoints: [link B/C/D/H]
+The work was completed on debug/stage08. The prepared faulty-state SHA was b05c90b760b350ddc01b288c81b8bd1a2e3f89c7, and the regression-test SHA was bc965111f508ed490c749bb583aaaf6588f1b321. The F8-01 repair SHA was 9059737469c089044d3843bbcf23fe3de67e31a7, while the F8-02 repair SHA was bac6afe36e5dfeb881a9561f968142c16906d154. The refactor SHA was 27d4856e925992960bdb5fc3fc387f3b6cab8d55, and it was pushed successfully.
+
+
+
 PR link and another member's reviewer identity: [complete]
+
+
+
 Key human feedback, difference from Copilot findings and response/outcome: [complete]
 Actual review approval / merge evidence: [complete]
 Integrated code SHA and team pull/retest command / working directory / result: [complete]
@@ -420,8 +453,16 @@ Each member's substantive contribution and artefact: [complete]
 ## J. Required reflections
 
 1. Which Copilot diagnosis appeared convincing but lacked evidence? [complete; report honestly if none and discuss the least-supported real suggestion]
+Copilots suggestion that 'book_appointment()' might possibly pass the wrong practitioner ID to 'has_practitioner_conflict' would initially appear plausible. As passing the wrong argument could potentially produce behaviours similar to that of a reversed comparison, however source inspection would show that the service passed the practitioner ID belonging to the requested booking and no execution or code evidence supported an incorrect caller argument. The suggestion was therefore rejected after the visible != comparison provided a better-supported explanation.
+
+
 2. What evidence changed your group's view? [complete]
+The failing tests first established only that the conflict and cancelled history behaviours were incorrect, but by inspecting 'has_practitioner_conflict()' it would reveal that practitioner IDs were being compared using != which would directly explain the reversed conflict results. And further inspection to the 'find_appoint()' would reveal that an explicit condition excluding appointments with a cancelled status. The list and identity checks confirmed that the cancelled appointment remained stored rather than being deleted or replaced. This evidence would change both diagnoses from plausible hypothesis into supported root causes.
+
+
 3. How did regression tests protect the refactoring? [complete]
+Before refactoring, the complete suite passed all 55 test, which would establish a working baseline. The refactoring replaced the 'scheduled' magic string with 'AppointmentStatus.SCHEDULED' without changing the conflict logic, now after the change, both Stage 8 regression tests passed, and the four focused conflict tests passed in 0.01s. The complete suite then passed all 55 tests in 0.03s. These results showed that the readability improvement preserved the required external behaviour.
+
 
 ## K. Ten formative questions
 
@@ -476,18 +517,20 @@ The Stage 8 rule is to diagnose before fixing. Engineers should observe, reprodu
 
 ## L. Completion and handover
 
-- [ ] Existing project, earlier tests and stage records preserved.
-- [ ] Passing Stage 7 SHA and safe preparation details recorded.
-- [ ] Both defects reproduced with meaningful failing tests.
+- [x] Existing project, earlier tests and stage records preserved.
+- [x] Passing Stage 7 SHA and safe preparation details recorded.
+- [x] Both defects reproduced with meaningful failing tests.
 - [ ] Both human hypotheses recorded before Copilot; actual suggestions evaluated with evidence.
-- [ ] Supported causes and minimal repairs explained; focused and full regression results recorded.
-- [ ] One genuine refactor verified under passing before/after tests.
+- [x] Supported causes and minimal repairs explained; focused and full regression results recorded.
+- [x] One genuine refactor verified under passing before/after tests.
 - [ ] Human PR review, feedback resolution and integrated retest recorded.
-- [ ] Tutorial, three reflections and ten formative responses complete.
+- [x] Tutorial, three reflections and ten formative responses complete.
 - [ ] Local recovery metadata excluded from submitted source.
 - [ ] Same project and full suite ready for Stage 9 after Stage 8 integration, verification and recording.
 
 Verified integrated code SHA / result: see I.
 Submitted SHA and evidence-only difference if any: [complete]
 Unresolved issues or incomplete checks / owner / next action: [complete]
+Both prepared defects have been repaired, and the enum refactor has been completed and pushed on debug/stage08. The latest branch test result is 55 passed in 0.03s.
+
 Handover note: [complete]
