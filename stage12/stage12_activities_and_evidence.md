@@ -2,19 +2,28 @@
 
 BLANK student response template. Supplied from the beginning in stage12/ in your EXISTING repository; complete it only when you reach Stage 12 after the previous applicable stage is integrated, verified and recorded; preserve project/, tests, earlier records and Git history. UG/common and PG/extended scope must be explicit. Use concise results and versioned links, not copied logs or source. No staff answers or fabricated approvals.
 
-Group/tutorial: [response]
+Group/tutorial: [response] Tutorial: Wednesday 4:30-6:30, Group: 3
 Members and UG/PG applicability: [response]
-
+Andy Hoang, Denis Zimba, Tari Ganas and Ahron Singh. All members are UG.
 
 ## A Release scope and starting SHA
 
 Release label/version and requirements baseline: [response]
-Common starting SHA / branch / applicable members: [response]
-PG starting SHA / branch / applicable members or not applicable: [response]
-Working-state review and approved integration: [response]
-Protected common candidate and PG differences: [response]
-Feature freeze / owner / verifier: [response]
+Proposed SmartCare UG RC1, SmartCare A3 2026 revision 2.
 
+Common starting SHA / branch / applicable members: [response]
+Main at 3e260ca030adc4cb291bf635fa15348c1de864a1; applicable to all four members.
+
+PG starting SHA / branch / applicable members or not applicable: [response] Not applicable
+
+Working-state review and approved integration: [response]
+PR #15 merged Stage 9 as a5509994bd9c12beb9fea6f96bc91e0d3bbe2bf8. PR #16 merged the Stage 8 cleanup as 56d80cdb1183734ad2698343079a6e18f54a1844. PR #17 produced the current main SHA 3e260ca030adc4cb291bf635fa15348c1de864a1. A fresh clone was clean before testing.
+
+Protected common candidate and PG differences: [response]
+The common candidate is 3e260ca030adc4cb291bf635fa15348c1de864a1. There is no PG branch or PG difference.
+
+Feature freeze / owner / verifier: [response]
+Group member Andy is completing stage 12. Application code is currently frozen whilst the release documentation is corrected.
 
 ## B Requirements and release readiness matrix
 

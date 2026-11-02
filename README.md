@@ -1,17 +1,26 @@
 # Software Technology 1 Assignment 3
 
 One group repository and one evolving SmartCare application.
-Baseline: Stage 6 foundation, 2026 revision 2. This starter deliberately leaves the three Stage 6 service tasks incomplete.
+This repository contains the completed undergraduate SmartCare application developed through Stages 6–9. Stage 12 release verification and submission preparation are in progress.
 
 ## Group index
 
-- Group and tutorial: [complete]
-- Member names, GitHub usernames and UG/PG cohorts: [complete]
-- Shared repository URL: [complete]
+- Group and tutorial: [complete] Group 3 Wednesday 4:30 - 6:30
+- Member names, GitHub usernames and UG/PG cohorts: [complete] Andy Hoang, Denis Zimba, Tari Ganas and Ahron Singh, all undergraduate cohort. Members Github usernames are: Andy Hoang (andyhoang67), Denis Zimba (deniszimba), Tari Ganas (tariganas225-bit), Ahron (typicalgeezer42)
+- Shared repository URL: [complete] 
+https://github.com/deniszimba/st1-assignment-3
+
 - Latest completed stage: [complete]
+Stage 9, currently Stage 12 status: Release verification and evidence preparation in progress
+
 - Verified code SHA: [complete]
+3e260ca030adc4cb291bf635fa15348c1de864a1
+
 - Test command, working directory and observed result: [complete]
+'python3 -m pytest -q' from 'project/' which resulted in: 74 tests passed.
+
 - Final submitted SHA, if different from tested code SHA: [complete; explain evidence-only changes]
+
 
 Do not put student IDs, private peer ratings, credentials or personal contact details here.
 
