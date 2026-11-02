@@ -1,5 +1,5 @@
-"""Simple workflows using a shared SmartCareDataStore object."""
 
+"""Simple workflows using a shared SmartCareDataStore object."""
 
 from datetime import datetime
 
@@ -10,6 +10,7 @@ from smartcare.domain import (
     Patient,
     Practitioner,
 )
+from smartcare.queries import select_appointments
 
 
 class PatientService:
@@ -154,10 +155,23 @@ class AppointmentService:
         practitioner_id: str,
         status: AppointmentStatus | None = None,
     ) -> list[Appointment]:
-        """Stage 9: new ordered list; default includes every status.
+        """Return an ordered list of a practitioner's appointments.
 
-        Unknown practitioner raises LookupError, invalid status
-        ValueError; a known practitioner with no matches returns an
-        empty list.
+        Include every status by default. Validate the practitioner ID
+        and optional status. An unknown practitioner raises LookupError;
+        invalid inputs raise ValueError. A known practitioner with no
+        matching appointments returns an empty list.
         """
-        raise NotImplementedError('Stage 9: practitioner appointments')
+        if status is not None and not isinstance(status, AppointmentStatus):
+            raise ValueError('Invalid appointment status')
+
+        practitioner = self.data_store.find_practitioner(practitioner_id)
+
+        if practitioner is None:
+            raise LookupError('Practitioner not found')
+
+        return select_appointments(
+            self.data_store.list_appointments(),
+            practitioner.practitioner_id,
+            status,
+        )
