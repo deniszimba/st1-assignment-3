@@ -159,13 +159,18 @@ Responsibility check: Domain objects own valid fields, identity and guarded canc
 
 ## H. Review, completion and common handover
 
-Issues and bounded branches: Stage 9 work was completed on `feature/stage9-queries`, based on the integrated Stage 8 commit `e8478d681d17f1a7aae527573e081c6ebe89446b`.
+### Issues and bounded branches
 
-Main Stage 9 implementation commit: `94b9c0b`.
-Human design evidence commit: `b279da3`.
-Additional tests following Copilot review: `41beaa1`.
-Completed evidence record and formatting: `0bb0ab2` and `3396bd5`.
-README correction following human review: `3dbbc20`.
+Stage 9 work was completed on `feature/stage9-queries`, starting from the integrated Stage 8 commit `e8478d681d17f1a7aae527573e081c6ebe89446b`.
+
+Key commits:
+- `94b9c0b` - Implement Stage 9 queries, console and workflow tests.
+- `b279da3` - Record Stage 9 design before Copilot review.
+- `41beaa1` - Add Stage 9 tests from Copilot review.
+- `0bb0ab2` - Complete Stage 9 activities and evidence.
+- `3396bd5` - Restore Stage 9 evidence Markdown formatting.
+- `3dbbc20` - Update final Stage 9 test count.
+- `8cd065b` - Record Stage 9 human review and feedback.
 
 No separate Stage 9 issue IDs have been verified.
 
@@ -174,79 +179,115 @@ No separate Stage 9 issue IDs have been verified.
 Pull request: [PR #15 - Complete Stage 9 queries and console integration](https://github.com/deniszimba/st1-assignment-3/pull/15)
 
 Author: Denis Zimba.
+
 Human reviewer: Andy Hoang (`andyhoang67`).
+
 Review date: 2 November 2026.
 
-Andy inspected the Stage 9 queries, services, console, workflow tests and evidence. He confirmed that practitioner filtering, optional status filtering, date/time and appointment ID ordering, input validation, retained cancellation history and the shared session store were implemented correctly.
+Andy reviewed the Stage 9 queries, services, console, workflow tests and evidence. He confirmed that practitioner filtering, optional status filtering, date/time and appointment ID ordering, input validation, retained cancellation history and the shared session store were implemented correctly.
 
-He identified one documentation issue: line 95 of `project/README.md` reported 70 passing tests rather than the final 74.
+Andy identified one documentation issue: line 95 of `project/README.md` reported 70 passing tests rather than the final 74.
 
-[Andy's actual GitHub review comment](https://github.com/deniszimba/st1-assignment-3/pull/15#issuecomment-6570790369)
+[Andy's GitHub review comment](https://github.com/deniszimba/st1-assignment-3/pull/15#issuecomment-6570790369)
+
+Andy subsequently submitted a formal GitHub approval. PR #15 was successfully merged into `main` on 2 November 2026.
 
 ### Human response and correction
 
-I accepted Andy's documentation feedback because the README should agree with the final verified test results.
+I accepted Andy's feedback because the README needed to reflect the actual final test results.
 
-I updated line 95 to:
+I corrected line 95 of `project/README.md` to:
 
 **74 tests passed in 0.12 seconds.**
 
-The correction was committed as `3dbbc20` with the message "Update final Stage 9 test count" and successfully pushed to `feature/stage9-queries`.
+The correction was committed as `3dbbc20` and pushed to the Stage 9 branch before merging.
 
-This was a documentation-only correction. No application functionality was changed.
+This was a documentation-only correction. No application behaviour was changed.
 
-### Human review compared with Copilot
+### Human review compared with GitHub Copilot
 
-GitHub Copilot identified no critical or important findings. It suggested additional tests for COMPLETED-status service filtering, console listing order and entry-point dispatch. I accepted those suggestions, added four tests and verified that the suite passed.
+GitHub Copilot identified no critical or important issues with the Stage 9 implementation.
 
-Andy independently reviewed the resulting Stage 9 changes. He found no functional problems and identified the outdated README test count, which was corrected.
+It suggested additional coverage for COMPLETED-status service filtering, console listing order and entry-point dispatch. I accepted these suggestions and added four focused tests.
 
-Copilot's suggestions and the teammate's feedback were evaluated separately. Neither was treated as automatically correct without checking the code and observed test results.
+Andy independently reviewed the implementation and identified the outdated README test count, which was corrected.
 
-Andy's GitHub comment is recorded. Formal GitHub approval has not yet been verified.
+Both reviews contributed to improving the submission. Copilot's suggestions were checked against the requirements and tests, while Andy's feedback was addressed before the final merge.
 
-### Integration and verification
+### Integration and final verification
 
 Stage 9 pull request: PR #15.
 
-Review feedback: Received and addressed.
+PR status: MERGED.
 
-Integrated Stage 9 `main` SHA: PENDING MERGE.
+Human review status: APPROVED by Andy Hoang.
 
-Final submitted Stage 9 SHA: PENDING MERGE AND VERIFICATION.
+Integrated Stage 9 `main` SHA:
 
-Local regression command and working directory:
-- Working directory: `project/`
-- Command: `python -m pytest -q`
-- Observed result on 31 October 2026: 74 passed in 0.12 seconds.
+`a5509994bd9c12beb9fea6f96bc91e0d3bbe2bf8`
 
-Final post-merge regression result: PENDING.
+After merging, I switched to `main`, pulled the latest changes and ran the complete test suite.
 
-The README correction was documentation-only. The final integrated version will be tested again after merging PR #15 into `main`.
+Working directory: `project/`
+
+Command:
+
+`python -m pytest -q`
+
+Actual result on 2 November 2026:
+
+**74 passed in 0.18 seconds.**
+
+I returned to the repository root and verified the commit using:
+
+`git status`
+
+`git rev-parse HEAD`
+
+Git confirmed that `main` was up to date with `origin/main` and the working tree was clean.
+
+The verified integrated SHA is the Stage 9 technical checkpoint. Any later evidence-only commit must be distinguished from this tested code SHA.
 
 ### README and release handover
 
-`project/README.md` documents application setup, running the demo, launching the interactive menu, executing tests and known limitations.
+`project/README.md` documents application setup, demonstration mode, interactive menu operation, testing commands and known limitations.
 
-The application uses synthetic data stored in memory for the current session. No database, persistence or PG-only rescheduling workflow was introduced.
+The application uses synthetic data stored in memory for the current session. No database, persistence or PG-only rescheduling functionality was introduced.
 
-The group follows the UG pathway: Stage 6 → Stage 7 → Stage 8 → Stage 9 → Stage 12.
+The group follows the undergraduate pathway:
 
-Andy Hoang is coordinating the remaining Stage 12 release work. The integrated Stage 9 commit and verified test results will be provided for the Stage 12 release record.
+Stage 6 → Stage 7 → Stage 8 → Stage 9 → Stage 12.
+
+Andy Hoang is leading the remaining Stage 12 release work.
+
+The verified Stage 9 technical checkpoint is:
+
+`a5509994bd9c12beb9fea6f96bc91e0d3bbe2bf8`
+
+The Stage 12 release must independently verify its final candidate and record its own tested and submitted SHAs.
 
 ### Final Stage 9 checklist
 
 - [x] Pure queries, practitioner filtering and ordering implemented.
-- [x] Service validation and appointment history verified.
+- [x] Service validation and cancelled appointment history verified.
 - [x] Interactive console and error recovery implemented.
 - [x] Query, workflow and additional review tests passed.
 - [x] GitHub Copilot review and human decisions documented.
 - [x] Another group member reviewed Stage 9.
 - [x] Human feedback recorded and README correction pushed.
-- [x] Reflections and formative responses completed.
+- [x] Formal GitHub approval received from Andy Hoang.
+- [x] Pull request #15 merged into main.
+- [x] Integrated main SHA recorded.
+- [x] Final post-merge tests passed: 74 passed in 0.18 seconds.
+- [x] Git working tree verified clean after integration.
+- [x] Reflections and ten formative responses completed.
 - [x] README and Stage 9 evidence updated.
-- [ ] Formal PR approval, if required, and merge completed.
-- [ ] Integrated main SHA and final post-merge test result recorded.
-- [ ] Stage 9 verified release checkpoint handed over for Stage 12.
+- [x] Stage 9 verified technical checkpoint ready for Stage 12 handover.
 
-Stage 9 has been reviewed and the identified correction has been addressed. Final integration and verification remain pending.
+### Final outcome
+
+Stage 9 implementation, testing, GitHub Copilot review, teammate review and integration have been completed.
+
+PR #15 was approved and merged. The integrated application passed all 74 automated tests, and the verified commit SHA has been recorded.
+
+Stage 9 is complete and ready for the group's Stage 12 final release process.
