@@ -441,26 +441,41 @@ The work was completed on debug/stage08. The prepared faulty-state SHA was b05c9
 
 
 PR link and another member's reviewer identity: [complete]
-
+The entirety of stage 8 was integrated through PR#12, PR#13, and PR#14. Group member Denis provided the documented human review via a comment within the PR#14. 
 
 
 Key human feedback, difference from Copilot findings and response/outcome: [complete]
+Denis's feedback confirmed that both debugging fixes were correct and working properly and that the regression tests passed. Which unlike the Copilot diagnosis which focused heavily on identifying the causes of F8-01 and F8-02, the human review identified two repository related problems, which were that test regression python file should be moved into the project/test and the prepare_debugging python file needs to be removed from the repository. This feedback was then accepted as tests belong with the existing test suite and the preparation utility should not be submitted. These two cleanup actions remain pending until a follow-up commit verifies them.
+
+
 Actual review approval / merge evidence: [complete]
+PR #12 was merged as 6f00dbe4afdccaee5d7b5272fde026b35d1ff27f, PR #13 as b1d1d561d3b42270612e206e73115466bf53140b, and PR #14 as e8478d681d17f1a7aae527573e081c6ebe89446b. Denis's review was posted after these merges but both the tests and repairs were correct, subject to two minor changes to the repository which were done to cleanup the repository. 
+
 Integrated code SHA and team pull/retest command / working directory / result: [complete]
+The final integrated Stage 8 SHA was e8478d681d17f1a7aae527573e081c6ebe89446b. From project/, the integrated verification command was python3 -m pytest -q, which produced 55 passed. The feedback also reported that the tests passed.
+
 Evidence-only later SHA / explanation if different: [complete or not applicable]
+The final Stage 8 evidence branch SHA was f699115247857c9d2ef2759ce5c65b04d830667f, which was merged through PR #14 to produce integrated SHA e8478d681d17f1a7aae527573e081c6ebe89446b. The post-review cleanup SHA is f7190155bdf91e3c741cf865cb85656f37b0a022. This commit responded to Denis Zimba’s feedback by deleting project/Stage_8_Assets/prepare_debugging.py and moving project/test_regressions.py to project/tests/test_regressions.py. It did not change application behaviour, and the full suite still produced 55 passed in 0.03 seconds. 
+
+
 Each member's substantive contribution and artefact: [complete]
+Andy Hoang completed the Stage 8 preparation, regression tests, F8-01 and F8-02 repairs, enum refactor, test verification and Stage 8 evidence record. Denis Zimba provided the documented post-merge human review and identified the two repository-cleanup actions. Tari Ganas and Ahron Singh’s earlier contributions remain recorded in the Stage 6 and Stage 7 artefacts and no separate Stage 8 contribution from them is currently evidenced.
+
 
 ## J. Required reflections
 
 1. Which Copilot diagnosis appeared convincing but lacked evidence? [complete; report honestly if none and discuss the least-supported real suggestion]
+
 Copilots suggestion that 'book_appointment()' might possibly pass the wrong practitioner ID to 'has_practitioner_conflict' would initially appear plausible. As passing the wrong argument could potentially produce behaviours similar to that of a reversed comparison, however source inspection would show that the service passed the practitioner ID belonging to the requested booking and no execution or code evidence supported an incorrect caller argument. The suggestion was therefore rejected after the visible != comparison provided a better-supported explanation.
 
 
 2. What evidence changed your group's view? [complete]
+
 The failing tests first established only that the conflict and cancelled history behaviours were incorrect, but by inspecting 'has_practitioner_conflict()' it would reveal that practitioner IDs were being compared using != which would directly explain the reversed conflict results. And further inspection to the 'find_appoint()' would reveal that an explicit condition excluding appointments with a cancelled status. The list and identity checks confirmed that the cancelled appointment remained stored rather than being deleted or replaced. This evidence would change both diagnoses from plausible hypothesis into supported root causes.
 
 
 3. How did regression tests protect the refactoring? [complete]
+
 Before refactoring, the complete suite passed all 55 test, which would establish a working baseline. The refactoring replaced the 'scheduled' magic string with 'AppointmentStatus.SCHEDULED' without changing the conflict logic, now after the change, both Stage 8 regression tests passed, and the four focused conflict tests passed in 0.01s. The complete suite then passed all 55 tests in 0.03s. These results showed that the readability improvement preserved the required external behaviour.
 
 
@@ -507,7 +522,6 @@ Response: [complete]
 A code smell is a warning that code could be difficult to understand, maintain or change in a safe manner. Examples of this would include duplicated code, magic values, deep nesting and mixed responsibilities. Code smell is not automatically detected as a defect but it may justify careful refactoring.
 
 9. How should GitHub Copilot-generated debugging diagnoses be treated?
-
 Response: [complete]
 Copilot diagnoses should be treated as a unverified hypotheses rather than cold facts. As each suggestion must be compared with the requirements, source code and test evidence. It should only be accepted once the availble evidence supports it. 
 10. What is the Stage 8 engineering rule?
@@ -520,17 +534,19 @@ The Stage 8 rule is to diagnose before fixing. Engineers should observe, reprodu
 - [x] Existing project, earlier tests and stage records preserved.
 - [x] Passing Stage 7 SHA and safe preparation details recorded.
 - [x] Both defects reproduced with meaningful failing tests.
-- [ ] Both human hypotheses recorded before Copilot; actual suggestions evaluated with evidence.
+- [x] Both human hypotheses recorded before Copilot; actual suggestions evaluated with evidence.
 - [x] Supported causes and minimal repairs explained; focused and full regression results recorded.
 - [x] One genuine refactor verified under passing before/after tests.
-- [ ] Human PR review, feedback resolution and integrated retest recorded.
+- [x] Human PR review, feedback resolution and integrated retest recorded.
 - [x] Tutorial, three reflections and ten formative responses complete.
-- [ ] Local recovery metadata excluded from submitted source.
-- [ ] Same project and full suite ready for Stage 9 after Stage 8 integration, verification and recording.
+- [x] Local recovery metadata excluded from submitted source.
+- [x] Same project and full suite ready for Stage 9 after Stage 8 integration, verification and recording.
 
 Verified integrated code SHA / result: see I.
 Submitted SHA and evidence-only difference if any: [complete]
 Unresolved issues or incomplete checks / owner / next action: [complete]
+
 Both prepared defects have been repaired, and the enum refactor has been completed and pushed on debug/stage08. The latest branch test result is 55 passed in 0.03s.
 
 Handover note: [complete]
+Both prepared defects were repaired and the enum refactor was completed. Denis Zimba’s post-merge feedback was addressed on `debug/stage08`. Final handover requires the cleanup commit to be merged into `main` and the integrated suite to be rerun successfully.
