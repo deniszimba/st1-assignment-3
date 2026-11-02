@@ -92,7 +92,7 @@ python -m pytest -q
 
 Stage 9 local verification on 31 October 2026:
 
-**70 tests passed in 0.18 seconds.**
+**74 tests passed in 0.12 seconds.**
 
 Tests cover domain validation, registration, appointment conflicts, cancellation, retained history, pure queries, service listing, interactive workflows and expected error recovery.
 
