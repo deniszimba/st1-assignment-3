@@ -543,10 +543,13 @@ The Stage 8 rule is to diagnose before fixing. Engineers should observe, reprodu
 - [x] Same project and full suite ready for Stage 9 after Stage 8 integration, verification and recording.
 
 Verified integrated code SHA / result: see I.
-Submitted SHA and evidence-only difference if any: [complete]
-Unresolved issues or incomplete checks / owner / next action: [complete]
 
-Both prepared defects have been repaired, and the enum refactor has been completed and pushed on debug/stage08. The latest branch test result is 55 passed in 0.03s.
+Submitted SHA and evidence-only difference if any: [complete]
+The latest Stage 8 evidence SHA was `3e260ca030adc4cb291bf635fa15348c1de864a1`. The difference from the original Stage 8 technical integration SHA consists of the reviewed cleanup, later Stage 9 integration and evidence corrections. The cleanup removed `prepare_debugging.py` from the repository and moved `test_regressions.py` into `project/tests/`; it did not alter the intended Stage 8 application behaviour.
+
+Unresolved issues or incomplete checks / owner / next action: [complete]  
+No Stage 8 technical issue remains unresolved. Both prepared defects were repaired, the refactor was verified, the preparation utility was removed, the regression test was moved into the existing test suite, and the cleanup was merged into `main`. The remaining work belongs to Stage 12: the group must complete final release verification, obtain final human approval, record the final submitted SHA and verify the release ZIP.
+
 
 Handover note: [complete]
-Both prepared defects were repaired and the enum refactor was completed. Denis Zimba’s post-merge feedback was addressed on `debug/stage08`. Final handover requires the cleanup commit to be merged into `main` and the integrated suite to be rerun successfully.
+The Stage 8 technical work was integrated as `e8478d681d17f1a7aae527573e081c6ebe89446b`, where the Stage 8 suite produced 55 passing tests. The post-review repository cleanup was merged through PR #16 as `56d80cdb1183734ad2698343079a6e18f54a1844`. Final Stage 8 evidence corrections were merged through PR #17 as `3e260ca030adc4cb291bf635fa15348c1de864a1`, and the later integrated project verification produced 74 passing tests. Denis Zimba’s post-merge feedback was addressed on `debug/stage08`.

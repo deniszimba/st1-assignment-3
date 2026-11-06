@@ -254,7 +254,7 @@ Repeat per member. Include only categories that describe actual work; write not 
 - Review: reviewed PR #4, ran the required Copilot comparison, recorded Accept/Reject decisions  and approved; reviewed PR #5, ran the Copilot comparison and recorded decisions; reviewed PR #6, ran the Copilot comparison, recorded decisions and approved (approval)
 - Issue refinement: Tari reviewed copilots recommendations
 - Design and responsibility discussion: See PR and issue history.
-- Debugging or integration: merged PR #4 into main (433a345); merged PR #5 into main (f36218e); merged PR #6 into main (3ca7a3a); [TO DO: pulled main and ran the tests after the merge]
+- Debugging or integration: merged PR #4 into main (`433a345`), PR #5 into main (`f36218e`) and PR #6 into main (`3ca7a3a`). Later integrated verification was performed by Ahron Singh on the final Stage 6 SHA, producing 33 passing tests. 
 - Documentation or team support: drafted section A for FR-02 (acceptance criteria and scope wording) 
 
 
