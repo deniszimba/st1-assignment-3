@@ -292,7 +292,7 @@ Approver / date / rationale and evidence:
 Tari approved the candidate on November 7th 2026 after his independent extraction and test of all the archives. The demonstration and interactive console worked, the required behaviours were reproduced and all 74 tests passed. All of this evidence can be seen in his comment in PR#18.
 
 What risks remain / conditions / owners: 
-The accepted limitations include session only storage, naive miniute precision local date and time values and the absense of production authentication, concurrency protection, notification, billing, monitoring and a formal timezone policy. Andy must then merge the final evidence update, record the final main SHA and create and verify the final submission ZIP from that SHA.
+The accepted limitations include session only storage, naive miniute precision local date and time values and the absense of production authentication, concurrency protection, notification, billing, monitoring and a formal timezone policy. The final evidence update was merged and the submitted source candidate was recorded as '09b70dc38ef309d2d02e6d513e5a88ec3ba77fd0'. Then the Smartcare release zip was generated from that commut, then extracted independently and was verified with 74 passing tests. Finally, only the confirmed assessment submission and the seperate reflection, peer assessment and oral video remain, these are left uncompleted as their deadlines are significantly after this assignment, and can only be attempted after the submission/completion of this assignment.
 
 Can the team explain the system: 
 Yes, the group staged evidence all identifies the responsibilities of the domain, data store, services, queries and console. It also records debugging repairs, regression tests, AI assisted suggestions, human decisions and accepted release limitations.
@@ -306,23 +306,23 @@ The common UG decision is ready with documented limitations but the PG decision 
 ## K Final tested release SHA
 
 Exact common tested SHA: 
-`03fbe163e6dcf40c1d295c6cea192413492e6de5`.
+`09b70dc38ef309d2d02e6d513e5a88ec3ba77fd0`.
 
 Exact PG tested SHA or not applicable: 
 Not applicable as all members are UG.
 
 Final submitted SHA / repository URL: 
-Repository URL: https://github.com/deniszimba/st1-assignment-3.
+Final submitted source SHA: 09b70dc38ef309d2d02e6d513e5a88ec3ba77fd0, Repository URL: https://github.com/deniszimba/st1-assignment-3.
 
 Evidence-only later commit and difference explanation: 
-PR #18 merged the Stage 12 documentation and release-check evidence as 'ec4418fbaa311f056902bc94095786c10f67e86f'. PR #19 produced '03fbe163e6dcf40c1d295c6cea192413492e6de5' by renaming four evidence screenshots for ZIP portability. These later changes concerned documentation and evidence packaging and did not change application behaviour.
+The submitted source candidate is '09b70dc38ef309d2d02e6d513e5a88ec3ba77fd0', a later evidence only documentation only change records the ZIP hash and post-port verification results It only changes the stage 12 activitiy md file and doesn't change the application source, dependencies or tests. 
 
 
 Executable changes after testing and re-verification: 
-No executable application changes were made after testing and PR#19 only renamed evidence files, therefore if the final evidence pull requests changes documentation only so no application behaviour will be changed but the final archive must still be extracted and retested.
+None, the archive was generated directly from '09b70dc38ef309d2d02e6d513e5a88ec3ba77fd0' and then extracted into a seperate direcrtory and tested without modifying its contents.
 
 Source ZIP name / SHA correspondence / extracted comparison: 
-
+`SmartCare-release.zip` was generated with `git archive` from `09b70dc38ef309d2d02e6d513e5a88ec3ba77fd0`. Its SHA-256 is `de555abd3ee8bf6cf1b13e6d171a8f44a8e805237ed382b41e232c2ee55c6aef`. `unzip -t` was used to report no errors, the Git tree to zip file comparision also produced to differences and the seperately extracted archive produced 74 passed tests in 0.08 seconds using Python 3.14.7 and pytest 8.3.5.
 
 ## L Submission package verification
 
@@ -333,13 +333,13 @@ Source ZIP name / SHA correspondence / extracted comparison:
 - [x] Release notes, technical debt and limitations visible.
 - [x] Independent human review, integration and release decision recorded.
 - [x] Repository URL accessible to marker and exact candidate SHA identified.
-- [ ] One source ZIP from submitted commit with root README.md and .gitignore.
+- [x] One source ZIP from submitted commit with root README.md and .gitignore.
 - [x] project/ source and all accumulated applicable tests included.
 - [ ] All common applicable stage records included; Stage 10/11 records completed only for the PG pathway. UG-only groups retain supplied PG-only templates unchanged as intentionally not applicable, without fabricated N/A responses.
-- [ ] No .git, environments, caches, secrets, real data, staff solutions or private QA in ZIP.
+- [x] No .git, environments, caches, secrets, real data, staff solutions or private QA in ZIP.
 - [x] No Stage 8 utility/backups/recovery metadata or duplicate application in ZIP.
 - [x] Mixed-group common protection and candidate upload routing checked.
-- [ ] Group reflection, confidential individual peer forms and common team viva routed separately.
+- [x] Group reflection, confidential individual peer forms and common team viva routed separately.
 
 Confirmed assessment item/upload route: 
 Deadline/timezone: 
